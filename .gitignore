@@ -1,0 +1,13 @@
+.idea
+.gradle
+
+buildSrc/build
+buildSrc/.gradle
+
+common/build
+common/.gradle
+
+paper/build
+paper/.gradle
+
+build
