@@ -1,14 +1,14 @@
 package com.ryderbelserion.template.paper.support;
 
 import com.ryderbelserion.cluster.api.adventure.FancyLogger;
-import com.ryderbelserion.template.paper.PluginTemplate;
+import com.ryderbelserion.template.paper.PaperTemplate;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public class MetricsHandler {
 
-    private final @NotNull PluginTemplate plugin = JavaPlugin.getPlugin(PluginTemplate.class);
+    private final @NotNull PaperTemplate plugin = JavaPlugin.getPlugin(PaperTemplate.class);
 
     private Metrics metrics;
 

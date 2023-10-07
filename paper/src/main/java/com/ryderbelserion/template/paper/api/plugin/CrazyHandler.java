@@ -1,11 +1,10 @@
 package com.ryderbelserion.template.paper.api.plugin;
 
-import com.ryderbelserion.cluster.api.adventure.FancyLogger;
 import com.ryderbelserion.cluster.bukkit.BukkitPlugin;
 import com.ryderbelserion.template.common.TemplatePlugin;
 import com.ryderbelserion.template.common.config.ConfigManager;
 import com.ryderbelserion.template.common.config.types.PluginConfig;
-import com.ryderbelserion.template.paper.PluginTemplate;
+import com.ryderbelserion.template.paper.PaperTemplate;
 import com.ryderbelserion.template.paper.support.MetricsHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -13,7 +12,7 @@ import java.io.File;
 
 public class CrazyHandler extends TemplatePlugin {
 
-    private final @NotNull PluginTemplate plugin = JavaPlugin.getPlugin(PluginTemplate.class);
+    private final @NotNull PaperTemplate plugin = JavaPlugin.getPlugin(PaperTemplate.class);
 
     private BukkitPlugin bukkitPlugin;
     private MetricsHandler metrics;

@@ -5,7 +5,7 @@ import com.ryderbelserion.template.common.config.types.PluginConfig;
 import com.ryderbelserion.template.paper.api.plugin.CrazyHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class PluginTemplate extends JavaPlugin {
+public class PaperTemplate extends JavaPlugin {
 
     private CrazyHandler crazyHandler;
 
