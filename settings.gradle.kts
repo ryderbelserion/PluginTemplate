@@ -8,11 +8,3 @@ pluginManagement {
 }
 
 rootProject.name = "PluginTemplate"
-
-listOf(
-    "paper",
-
-    "common"
-).forEach {
-    include(it)
-}
