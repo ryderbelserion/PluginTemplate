@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    // compileOnly(kotlin("stdlib"))
+    // compileOnly("org.jetbrains.kotlin","kotlin-stdlib-jdk8","1.9.10")
 
     // https://github.com/ryderbelserion/Cluster
     // compileOnly("com.ryderbelserion.cluster", "cluster-paper", "2.2")
