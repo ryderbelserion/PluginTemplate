@@ -4,6 +4,8 @@ plugins {
     id("io.papermc.paperweight.userdev") version "1.5.7"
 
     `java-library`
+
+    // kotlin("jvm") version "1.9.10"
 }
 
 rootProject.group = "com.ryderbelserion.template"
@@ -19,6 +21,8 @@ repositories {
 }
 
 dependencies {
+    // compileOnly(kotlin("stdlib"))
+
     // https://github.com/ryderbelserion/Cluster
     // compileOnly("com.ryderbelserion.cluster", "cluster-paper", "2.2")
 
@@ -31,15 +35,27 @@ dependencies {
     paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 }
 
+/*kotlin {
+    jvmToolchain(17)
+
+    sourceSets.all {
+        languageSettings {
+            languageVersion = "2.0"
+        }
+    }
+}*/
+
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of("17"))
 }
 
 tasks {
-    compileJava {
-        options.encoding = Charsets.UTF_8.name()
-        options.release.set(17)
-    }
+    /*compileKotlin {
+        kotlinOptions {
+            jvmTarget = "17"
+            javaParameters = true
+        }
+    }*/
 
     val jarsDir = File("$rootDir/jars")
 
