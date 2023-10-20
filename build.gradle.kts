@@ -3,8 +3,6 @@ plugins {
 
     id("io.papermc.paperweight.userdev") version "1.5.7"
 
-    id("xyz.jpenilla.run-paper") version "2.1.0"
-
     `java-library`
 }
 
@@ -15,15 +13,20 @@ rootProject.version = "0.2"
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/")
 
+    maven("https://repo.triumphteam.dev/snapshots/")
+
     maven("https://repo.crazycrew.us/releases/")
 }
 
 dependencies {
     // https://github.com/ryderbelserion/Cluster
-    // implementation("com.ryderbelserion.cluster", "cluster-bukkit", "1.5")
+    // compileOnly("com.ryderbelserion.cluster", "cluster-paper", "2.2")
+
+    // https://github.com/TriumphTeam/triumph-cmds
+    // compileOnly("dev.triumphteam", "triumph-cmd-bukkit", "2.0.0-SNAPSHOT")
 
     // https://github.com/AuthMe/ConfigMe
-    // implementation("ch.jalu", "configme", "1.4.1")
+    // compileOnly("ch.jalu", "configme", "1.4.1")
 
     paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 }
@@ -48,12 +51,6 @@ tasks {
 
     reobfJar {
         outputJar.set(file("$jarsDir/${rootProject.name}-${rootProject.version}.jar"))
-    }
-
-    runServer {
-        jvmArgs("-Dnet.kyori.ansi.colorLevel=truecolor")
-
-        minecraftVersion("1.20.2")
     }
 
     processResources {
