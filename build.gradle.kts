@@ -21,16 +21,16 @@ repositories {
 }
 
 dependencies {
-    // compileOnly("org.jetbrains.kotlin","kotlin-stdlib-jdk8","1.9.10")
+    // compileOnly(libs.jetbrains.kotlin)
 
     // https://github.com/ryderbelserion/Cluster
-    // compileOnly("com.ryderbelserion.cluster", "cluster-paper", "2.2")
+    // compileOnly(libs.cluster.paper)
 
     // https://github.com/TriumphTeam/triumph-cmds
-    // compileOnly("dev.triumphteam", "triumph-cmd-bukkit", "2.0.0-SNAPSHOT")
+    // compileOnly(libs.triumph.cmds)
 
     // https://github.com/AuthMe/ConfigMe
-    // compileOnly("ch.jalu", "configme", "1.4.1")
+    // compileOnly(libs.config.me)
 
     paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 }
