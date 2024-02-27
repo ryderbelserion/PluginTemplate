@@ -46,6 +46,26 @@ java {
 }
 
 tasks {
+    compileJava {
+        // This makes sure everything uses UTF_8 encoding.
+        options.encoding = Charsets.UTF_8.name()
+
+        // Sets the release for compiling java.
+        options.release.set(17)
+    }
+
+    // This is used when generating javadocs for your plugin.
+    javadoc {
+        // This makes sure everything uses UTF_8 encoding.
+        options.encoding = Charsets.UTF_8.name()
+    }
+
+    // This is used for applying placeholders to your plugin.yml like below on line 115.
+    processResources {
+        // This makes sure everything uses UTF_8 encoding.
+        filteringCharset = Charsets.UTF_8.name()
+    }
+
     // If you want kotlin, You should comment/ out or remove this.
     /*compileKotlin {
         kotlinOptions {
