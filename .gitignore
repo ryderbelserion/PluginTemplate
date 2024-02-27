@@ -1,16 +1,5 @@
-.idea
+# You never want to commit these 4 folders, .gradle, .idea and build get rather large. jars is just jars, no one needs potentially broken builds.
 .gradle
-build
+.idea
 jars
-
-buildSrc/build
-buildSrc/.gradle
-
-common/build
-common/.gradle
-
-paper/build
-paper/.gradle
-
-fabric/build
-fabric/.gradle
+build

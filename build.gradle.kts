@@ -1,50 +1,48 @@
 plugins {
+    // The shadow jar plugin, It allows you to shade dependencies and create a fat jar. It supports userdev
+    // https://github.com/johnrengelman/shadow
     id("com.github.johnrengelman.shadow") version "8.1.1"
 
-    id("io.papermc.paperweight.userdev") version "1.5.7"
+    // The userdev plugin from Paper.
+    // https://github.com/PaperMC/paperweight
     id("io.papermc.paperweight.userdev") version "1.5.9"
 
+    // If you want kotlin, You should comment/ out or remove this.
     `java-library`
 
+    // Only use this if you want Kotlin
     // kotlin("jvm") version "1.9.10"
 }
 
-rootProject.group = "com.ryderbelserion.template"
-rootProject.description = "A plugin template."
-rootProject.version = "0.2"
+// This grabs "1.20.4" from gradle.properties
+val mcVersion = providers.gradleProperty("mcVersion").get()
 
 repositories {
+    // This is required for paperweight to function.
     maven("https://repo.papermc.io/repository/maven-public/")
-
-    maven("https://repo.triumphteam.dev/snapshots/")
-
-    maven("https://repo.crazycrew.us/releases/")
 }
 
 dependencies {
+    // Only use this if you want Kotlin
     // compileOnly(libs.jetbrains.kotlin)
 
-    // https://github.com/ryderbelserion/Cluster
-    // compileOnly(libs.cluster.paper)
-
-    // https://github.com/TriumphTeam/triumph-cmds
-    // compileOnly(libs.triumph.cmds)
-
-    // https://github.com/AuthMe/ConfigMe
-    // compileOnly(libs.config.me)
-
-    paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
+    // The paper equivalent of spigot buildtools where you get access to the server's nms or net.minecraft.server.
+    // If an update comes out and you notice there something you want, Refresh your gradle cache.
+    paperweight.paperDevBundle("$mcVersion-R0.1-SNAPSHOT")
 }
 
+// Only use this if you want Kotlin
 /*kotlin {
     jvmToolchain(17)
 }*/
 
+// If you want kotlin, You should comment/ out or remove this.
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of("17"))
 }
 
 tasks {
+    // If you want kotlin, You should comment/ out or remove this.
     /*compileKotlin {
         kotlinOptions {
             jvmTarget = "17"
@@ -55,25 +53,40 @@ tasks {
     val jarsDir = File("$rootDir/jars")
 
     assemble {
+        // Creates the directory we need or deletes if it exists to prevent old jars.
         if (jarsDir.exists()) jarsDir.delete() else jarsDir.mkdirs()
 
+        // Makes it so reobfJar runs next.
         dependsOn(reobfJar)
     }
 
     reobfJar {
+        // Sets the output folder.
         outputJar.set(file("$jarsDir/${rootProject.name}-${rootProject.version}.jar"))
     }
 
     processResources {
         val props = mapOf(
+            // Pulls the name of the project from settings.gradle.kts
             "name" to rootProject.name,
-            "group" to rootProject.group,
+            // Pulls the version of the project which is defined in gradle.properties
             "version" to rootProject.version,
+            // Pulls the group of the project which is defined in gradle.properties
+            "group" to rootProject.group,
+            // Pulls the description of the project which is defined in gradle.properties
             "description" to rootProject.description,
-            "apiVersion" to "1.20",
+            // Pulls the api version of the project which is defined in gradle.properties.
+            // apiVersion defines what versions of Paper your plugin will boot on.
+            // If you wish to support multiple versions, look for "apiVersion" in gradle.properties in the root folder
+            // and change it to 1.13 then you should be able to boot up.
+            "apiVersion" to providers.gradleProperty("apiVersion").get(),
+            // Pulls the authors of the project which is defined in gradle.properties
+            "authors" to providers.gradleProperty("authors").get(),
+            // Pulls your website whether it be your github or your actual website defined in gradle.properties.
+            "website" to providers.gradleProperty("website").get()
         )
 
-        filesMatching("paper-plugin.yml") {
+        // Maps all the options to your plugin.yml on compilation, It replaces the variables with the correct data.
         filesMatching("plugin.yml") {
             expand(props)
         }
