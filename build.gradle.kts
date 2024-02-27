@@ -64,6 +64,17 @@ tasks {
         dependsOn(reobfJar)
     }
 
+    // This will relocate any dependencies that need to be relocated.
+    // Uncomment this if you need to use it.
+    /*shadowJar {
+        listOf(
+            // A common usage is to relocate bstats.
+            "org.bstats"
+        ).forEach {
+            relocate(it, "libs.$it")
+        }
+    }*/
+
     // Allows you to run a dev server which builds your plugin and loads it.
     runServer {
         // Allows colors to format probably in console/terminal.
