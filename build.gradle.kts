@@ -1,5 +1,5 @@
 plugins {
-    // The shadow jar plugin, It allows you to shade dependencies and create a fat jar. It supports userdev
+    // The shadow jar plugin, It allows you to shade dependencies and create a fat jar, It supports userdev.
     // https://github.com/johnrengelman/shadow
     id("com.github.johnrengelman.shadow") version "8.1.1"
 
@@ -7,14 +7,16 @@ plugins {
     // https://github.com/PaperMC/paperweight
     id("io.papermc.paperweight.userdev") version "1.5.9"
 
+    id("xyz.jpenilla.run-paper") version "2.2.3"
+
     // If you want kotlin, You should comment/ out or remove this.
     `java-library`
 
-    // Only use this if you want Kotlin
+    // Only use this if you want Kotlin.
     // kotlin("jvm") version "1.9.10"
 }
 
-// This grabs "1.20.4" from gradle.properties
+// This grabs "1.20.4" from gradle.properties.
 val mcVersion = providers.gradleProperty("mcVersion").get()
 
 repositories {
@@ -23,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    // Only use this if you want Kotlin
+    // Only use this if you want Kotlin.
     // compileOnly(libs.jetbrains.kotlin)
 
     // The paper equivalent of spigot buildtools where you get access to the server's nms or net.minecraft.server.
@@ -31,7 +33,7 @@ dependencies {
     paperweight.paperDevBundle("$mcVersion-R0.1-SNAPSHOT")
 }
 
-// Only use this if you want Kotlin
+// Only use this if you want Kotlin.
 /*kotlin {
     jvmToolchain(17)
 }*/
@@ -60,6 +62,18 @@ tasks {
         dependsOn(reobfJar)
     }
 
+    // Allows you to run a dev server which builds your plugin and loads it.
+    runServer {
+        // Allows colors to format probably in console/terminal.
+        jvmArgs("-Dnet.kyori.ansi.colorLevel=truecolor")
+
+        // Forces the server to run with UTF_8 encoding so special symbols work.
+        defaultCharacterEncoding = Charsets.UTF_8.name()
+
+        // Sets the minecraft version.
+        minecraftVersion(mcVersion)
+    }
+
     reobfJar {
         // Sets the output folder.
         outputJar.set(file("$jarsDir/${rootProject.name}-${rootProject.version}.jar"))
@@ -67,20 +81,20 @@ tasks {
 
     processResources {
         val props = mapOf(
-            // Pulls the name of the project from settings.gradle.kts
+            // Pulls the name of the project from settings.gradle.kts.
             "name" to rootProject.name,
-            // Pulls the version of the project which is defined in gradle.properties
+            // Pulls the version of the project which is defined in gradle.properties.
             "version" to rootProject.version,
-            // Pulls the group of the project which is defined in gradle.properties
+            // Pulls the group of the project which is defined in gradle.properties.
             "group" to rootProject.group,
-            // Pulls the description of the project which is defined in gradle.properties
+            // Pulls the description of the project which is defined in gradle.properties.
             "description" to rootProject.description,
             // Pulls the api version of the project which is defined in gradle.properties.
             // apiVersion defines what versions of Paper your plugin will boot on.
             // If you wish to support multiple versions, look for "apiVersion" in gradle.properties in the root folder
             // and change it to 1.13 then you should be able to boot up.
             "apiVersion" to providers.gradleProperty("apiVersion").get(),
-            // Pulls the authors of the project which is defined in gradle.properties
+            // Pulls the authors of the project which is defined in gradle.properties.
             "authors" to providers.gradleProperty("authors").get(),
             // Pulls your website whether it be your github or your actual website defined in gradle.properties.
             "website" to providers.gradleProperty("website").get()
