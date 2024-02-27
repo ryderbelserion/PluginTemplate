@@ -7,6 +7,8 @@ plugins {
     // https://github.com/PaperMC/paperweight
     id("io.papermc.paperweight.userdev") version "1.5.9"
 
+    // The run-paper plugin by jpenilla.
+    // https://github.com/jpenilla/run-task
     id("xyz.jpenilla.run-paper") version "2.2.3"
 
     // If you want kotlin, You should comment/ out or remove this.
