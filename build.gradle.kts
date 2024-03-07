@@ -77,11 +77,13 @@ tasks {
     val jarsDir = File("$rootDir/jars")
 
     assemble {
-        // Deletes if it exists to prevent old jars.
-        if (jarsDir.exists()) jarsDir.delete()
+        doFirst {
+            // Deletes if it exists to prevent old jars.
+            delete(jarsDir)
 
-        // Creates the directory.
-        jarsDir.mkdirs()
+            // Creates the directory.
+            jarsDir.mkdirs()
+        }
 
         // Makes it so reobfJar runs next.
         dependsOn(reobfJar)
