@@ -18,6 +18,11 @@ plugins {
     // kotlin("jvm") version "1.9.10"
 }
 
+
+base {
+    archivesName.set(rootProject.name)
+}
+
 // This grabs "1.20.4" from gradle.properties.
 val mcVersion = providers.gradleProperty("mcVersion").get()
 
@@ -78,15 +83,20 @@ tasks {
 
     assemble {
         doFirst {
-            // Deletes if it exists to prevent old jars.
             delete(jarsDir)
 
-            // Creates the directory.
             jarsDir.mkdirs()
         }
 
         // Makes it so reobfJar runs next.
         dependsOn(reobfJar)
+
+        doLast {
+            copy {
+                from(project.layout.buildDirectory.file("libs/${rootProject.name}-${project.version}.jar"))
+                into(jarsDir)
+            }
+        }
     }
 
     // This will relocate any dependencies that need to be relocated.
@@ -110,11 +120,6 @@ tasks {
 
         // Sets the minecraft version.
         minecraftVersion(mcVersion)
-    }
-
-    reobfJar {
-        // Sets the output folder.
-        outputJar.set(file("$jarsDir/${rootProject.name}-${rootProject.version}.jar"))
     }
 
     processResources {
