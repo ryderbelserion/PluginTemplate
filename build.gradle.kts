@@ -11,7 +11,6 @@ plugins {
     // https://github.com/jpenilla/run-task
     id("xyz.jpenilla.run-paper") version "2.3.0"
 
-    // If you want kotlin, You should comment/ out or remove this
     `java-library`
 }
 
