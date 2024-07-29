@@ -35,7 +35,7 @@ java {
     }
 }
 
-// This will tell paper that we are a plugin that doesn't use spigot mappings
+// This will tell paper that we are a plugin that uses spigot mappings
 paperweight {
     reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.REOBF_PRODUCTION
 }
