@@ -13,12 +13,9 @@ plugins {
 
     // If you want kotlin, You should comment/ out or remove this
     `java-library`
-
-    // Only use this if you want Kotlin
-    // kotlin("jvm") version "2.0.0"
 }
 
-// This grabs "1.20.6" from gradle.properties
+// This grabs "1.21" from gradle.properties
 val mcVersion = providers.gradleProperty("mcVersion").get()
 
 repositories {
@@ -27,18 +24,10 @@ repositories {
 }
 
 dependencies {
-    // Only use this if you want Kotlin
-    // compileOnly(libs.jetbrains.kotlin)
-
     // The paper equivalent of spigot BuildTools where you get access to the server's net.minecraft.server
     // If an update comes out, and you notice there something you want, refresh your gradle cache
-    paperweight.paperDevBundle("1.20.6-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("$mcVersion-R0.1-SNAPSHOT")
 }
-
-// Only use this if you want Kotlin
-/*kotlin {
-    jvmToolchain(21)
-}*/
 
 // If you want kotlin, You should comment/ out or remove this
 java {
@@ -81,14 +70,6 @@ tasks {
         filteringCharset = Charsets.UTF_8.name()
     }
 
-    // If you want kotlin, You should comment/ out or remove this
-    /*compileKotlin {
-        kotlinOptions {
-            jvmTarget = "21"
-            javaParameters = true
-        }
-    }*/
-
     assemble {
         dependsOn(reobfJar)
 
@@ -125,7 +106,7 @@ tasks {
             // apiVersion defines what versions of Paper your plugin will boot on
             // If you wish to support multiple versions, look for "apiVersion" in gradle.properties in the root folder
             // and change it to 1.13 then you should be able to boot up
-            "apiVersion" to providers.gradleProperty("apiVersion").get(),
+            "apiVersion" to mcVersion,
             // Pulls the authors of the project which is defined in gradle.properties
             "authors" to providers.gradleProperty("authors").get(),
             // Pulls your website whether it be your github or your actual website defined in gradle.properties
