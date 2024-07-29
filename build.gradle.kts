@@ -90,11 +90,11 @@ tasks {
     }*/
 
     assemble {
-        dependsOn(shadowJar)
+        dependsOn(reobfJar)
 
         doLast {
             copy {
-                from(shadowJar.get())
+                from(reobfJar.get())
                 into(rootProject.projectDir.resolve("jars"))
             }
         }
