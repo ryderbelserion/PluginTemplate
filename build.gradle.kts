@@ -28,7 +28,7 @@ dependencies {
     paperweight.paperDevBundle("$mcVersion-R0.1-SNAPSHOT")
 }
 
-// If you want kotlin, You should comment/ out or remove this
+// Sets the release for compiling java
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
