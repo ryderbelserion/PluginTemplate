@@ -11,7 +11,7 @@ plugins {
     // https://github.com/jpenilla/run-task
     id("xyz.jpenilla.run-paper") version "2.3.0"
 
-    `java-library`
+    java
 }
 
 // This grabs "1.21" from gradle.properties
