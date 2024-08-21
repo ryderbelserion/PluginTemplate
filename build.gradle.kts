@@ -1,7 +1,7 @@
 plugins {
     // The shadow jar plugin, It allows you to shade dependencies and create a fat jar, it supports userdev
-    // https://github.com/Goooler/shadow
-    id("io.github.goooler.shadow") version "8.1.7"
+    // https://github.com/GradleUp/shadow
+    id("com.gradleup.shadow") version "8.3.0"
 
     // The userdev plugin from Paper
     // https://github.com/PaperMC/paperweight
