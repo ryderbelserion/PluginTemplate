@@ -5,7 +5,7 @@ plugins {
 
     // The userdev plugin from Paper
     // https://github.com/PaperMC/paperweight
-    id("io.papermc.paperweight.userdev") version "1.7.1"
+    id("io.papermc.paperweight.userdev") version "1.7.2"
 
     // The run-paper plugin by jpenilla
     // https://github.com/jpenilla/run-task
