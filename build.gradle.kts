@@ -104,7 +104,8 @@ tasks {
             // Pulls the api version of the project which is defined in gradle.properties
             // apiVersion defines what versions of Paper your plugin will boot on
             // If you wish to support multiple versions, look for "apiVersion" in gradle.properties in the root folder
-            // and change it to 1.13 then you should be able to boot up
+            // and change it to 1.13 then you should be able to boot up, but you have to also change the dependencies above
+            // for what version of Minecraft that you depend on.
             "apiVersion" to mcVersion,
             // Pulls the authors of the project which is defined in gradle.properties
             "authors" to providers.gradleProperty("authors").get(),
