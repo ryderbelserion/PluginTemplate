@@ -1,20 +1,20 @@
 plugins {
     // The shadow jar plugin, It allows you to shade dependencies and create a fat jar, it supports userdev
     // https://github.com/GradleUp/shadow
-    id("com.gradleup.shadow") version "8.3.0"
+    id("com.gradleup.shadow") version "8.3.3"
 
     // The userdev plugin from Paper
     // https://github.com/PaperMC/paperweight
-    id("io.papermc.paperweight.userdev") version "1.7.2"
+    id("io.papermc.paperweight.userdev") version "1.7.3"
 
     // The run-paper plugin by jpenilla
     // https://github.com/jpenilla/run-task
-    id("xyz.jpenilla.run-paper") version "2.3.0"
+    id("xyz.jpenilla.run-paper") version "2.3.1"
 
     java
 }
 
-// This grabs "1.21" from gradle.properties
+// This grabs "1.21.1" from gradle.properties
 val mcVersion = providers.gradleProperty("mcVersion").get()
 
 repositories {
@@ -69,12 +69,12 @@ tasks {
         filteringCharset = Charsets.UTF_8.name()
     }
 
-    assemble {
+    assemble { // this method is simply how I like to handle my jars, it sends into a jars folder. you can just remove it and run whatever you want like gradle build.
         dependsOn(reobfJar)
 
         doLast {
             copy {
-                from(reobfJar.get())
+                from(reobfJar.get()) // if you don't use REOBF_PRODUCTION above, you can change this to build.get() or shadowJar.get()
                 into(rootProject.projectDir.resolve("jars"))
             }
         }
